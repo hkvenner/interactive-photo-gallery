@@ -1,0 +1,23 @@
+ul li{
+  list-style: none;
+}
+
+.gallery{
+  width: 100%;
+  margin: auto;
+}
+.gallery li{
+  float:left;
+  width: 20%;
+  margin: 2%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#search-box {
+
+}
