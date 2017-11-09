@@ -3,13 +3,17 @@ ul li{
 }
 
 .gallery{
-  width: 100%;
+  width: 90%;
   margin: auto;
 }
 .gallery li{
   float:left;
   width: 20%;
   margin: 2%;
+}
+
+img {
+  width: 100%;
 }
 
 body {
@@ -19,5 +23,6 @@ body {
 }
 
 #search-box {
-
+  margin-top: 30px;
+  width: 20%;
 }
