@@ -1,8 +1,8 @@
 (function ($, global, undefined) {
 	'use strict';
-	
+
 	$.quicksearch = {
-		defaults: { 
+		defaults: {
 			delay: 100,
 			selector: null,
 			stripeRows: null,
@@ -124,9 +124,9 @@
 			{'base':'z','letters':/[\u007A\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763]/g}
 		]
 	};
-	
+
 	$.fn.quicksearch = function (target, opt) {
-		
+
 		this.removeDiacritics = function(str) {
 			var changes = $.quicksearch.diacriticsRemovalMap;
 			for(var i=0; i<changes.length; i++) {
@@ -134,29 +134,29 @@
 			}
 			return str;
 		};
-		
-		var timeout, cache,	rowcache, jq_results, val = '', last_val = '', self = this, 
+
+		var timeout, cache,	rowcache, jq_results, val = '', last_val = '', self = this,
 			options = $.extend({}, $.quicksearch.defaults, opt);
-			
+
 		// Assure selectors
 		options.noResults = !options.noResults ? $() : $(options.noResults);
 		options.loader = !options.loader ? $() : $(options.loader);
-		
+
 		this.go = function () {
-			
+
 			var i = 0,
 				len = 0,
 				numMatchedRows = 0,
 				noresults = true,
 				query,
 				val_empty = (val.replace(' ', '').length === 0);
-				
+
 			if (options.removeDiacritics) {
 				val = self.removeDiacritics(val);
 			}
-			
+
 			query = options.prepareQuery(val);
-			
+
 			for (i = 0, len = rowcache.length; i < len; i++) {
 				if (query.length > 0 && query[0].length < options.minValLength) {
 					options.show.apply(rowcache[i]);
@@ -170,36 +170,36 @@
 					options.hide.apply(rowcache[i]);
 				}
 			}
-			
+
 			if (noresults) {
 				if($.isFunction(options.onNoResultFound)){
 					options.onNoResultFound(this);
 				}else{
 					this.results(false);
 				}
-				
+
 			} else {
 				this.results(true);
 				this.stripe();
 			}
-			
+
 			this.matchedResultsCount = numMatchedRows;
 			this.loader(false);
 			options.onAfter.call(this);
 			last_val = val;
 			return this;
 		};
-		
+
 		/*
-		 * External API so that users can perform search programatically. 
+		 * External API so that users can perform search programatically.
 		 * */
 		this.search = function (submittedVal) {
 			val = submittedVal;
 			self.trigger();
 		};
-		
+
 		/*
-		 * External API so that users can perform search programatically. 
+		 * External API so that users can perform search programatically.
 		 * */
 		this.reset = function () {
 			val = '';
@@ -210,29 +210,29 @@
 				self.go();
 			}, options.delay);
 		};
-		
+
 		/*
-		 * External API to get the number of matched results as seen in 
+		 * External API to get the number of matched results as seen in
 		 * https://github.com/ruiz107/quicksearch/commit/f78dc440b42d95ce9caed1d087174dd4359982d6
 		 * */
 		this.currentMatchedResults = function() {
 			return this.matchedResultsCount;
 		};
-		
+
 		this.stripe = function () {
-			
+
 			if (typeof options.stripeRows === "object" && options.stripeRows !== null) {
 				var joined = options.stripeRows.join(' ');
 				var stripeRows_length = options.stripeRows.length;
-				
+
 				jq_results.not(':hidden').each(function (i) {
 					$(this).removeClass(joined).addClass(options.stripeRows[i % stripeRows_length]);
 				});
 			}
-			
+
 			return this;
 		};
-		
+
 		this.strip_html = function (input) {
 			var output = input.replace(new RegExp('<[^<]+\\>', 'g'), ' ');
 			if (!options.caseSensitive) {
@@ -241,29 +241,29 @@
 			output = $.trim(output);
 			return output;
 		};
-		
+
 		this.results = function (bool) {
 			if (!!options.noResults.length) {
 				options.noResults[bool ? 'hide' : 'show']();
 			}
-			
+
 			return this;
 		};
-		
+
 		this.loader = function (bool) {
 			if (!!options.loader.length) {
 				options.loader[bool ? 'show' : 'hide']();
 			}
-			
+
 			return this;
 		};
-		
+
 		this.cache = function (doRedraw) {
-			
+
 			doRedraw = (typeof doRedraw === "undefined") ? true : doRedraw;
-			
+
 			jq_results = $(target).not(options.noResults);
-			
+
 			if (typeof options.selector === "string") {
 				cache = jq_results.map(function() {
 					return $(this).find(options.selector).map(function() {
@@ -277,24 +277,24 @@
 					return options.removeDiacritics ? self.removeDiacritics(temp) : temp;
 				});
 			}
-			
+
 			rowcache = jq_results.map(function () {
 				return this;
 			});
-			
+
 			/*
-			 * Modified fix for sync-ing "val". 
+			 * Modified fix for sync-ing "val".
 			 * Original fix https://github.com/michaellwest/quicksearch/commit/4ace4008d079298a01f97f885ba8fa956a9703d1
 			 * */
 			val = val || this.val() || "";
-			
+
 			if (doRedraw) {
 				this.go();
 			}
-			
+
 			return this;
 		};
-		
+
 		this.trigger = function () {
 			if ((val.length < options.minValLength && val.length > last_val.length) || (val.length < options.minValLength-1 && val.length < last_val.length)) {
 				options.onValTooSmall.call(this, val);
@@ -307,14 +307,14 @@
 					self.go();
 				}, options.delay);
 			}
-			
+
 			return this;
 		};
-		
+
 		this.cache();
 		this.stripe();
 		this.loader(false);
-		
+
 		return this.each(function () {
 			$(this).on(options.bind, function (e) {
 				if (options.keyCode) {
@@ -328,17 +328,17 @@
 					self.trigger();
 				}
 			});
-			
+
 			$(this).on(options.resetBind, function () {
 				val = '';
 				self.reset();
 			});
 		});
 	};
-	
+
 	// node export
 	if (global.module && global.module.exports) {
 		module.exports = $.fn.quicksearch;
 	}
-	
+
 })(jQuery, window || global);

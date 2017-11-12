@@ -4,12 +4,12 @@ var md = require('matchdep');
 module.exports = function(grunt) {
 
 	'use strict';
-	
+
 	var gruntfile = 'Gruntfile.js';
 	var sources = ['src/<%= pkg.name %>.js'];
-	
+
 	md.filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-	
+
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -31,12 +31,12 @@ module.exports = function(grunt) {
 				dest: 'dist/<%= pkg.name %>.js'
 			}
 		},
-		
+
 		watch: {
 			files: sources.concat(gruntfile),
 			tasks: ['dev']
 		},
-		
+
 		jshint: {
 			files: sources.concat(gruntfile),
 			options: {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
 				latedef: false, // late definition
 				newcap: false, // capitalize ctos
 				nonew: true, // no new ..()
-				noarg: true, 
+				noarg: true,
 				sub: true,
 				undef: true,
 				//boss: true,
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 		uglify: {
 			prod: {
 				files: {
-					'dist/<%= pkg.name %>.min.js': '<%= concat.dist.dest %>' 
+					'dist/<%= pkg.name %>.min.js': '<%= concat.dist.dest %>'
 				}
 			},
 			options: {
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		
+
 		complexity: {
 			generic: {
 				src: sources,
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-	
+
 	// fix source map url
 	grunt.registerTask('fix-source-map', 'Fix the wrong file path in the source map', function() {
 		var sourceMapPath = grunt.template.process('<%= uglify.options.sourceMap %>');
@@ -119,7 +119,7 @@ module.exports = function(grunt) {
 		grunt.log.write(sourceMap.sources);
 		grunt.file.write(sourceMapPath, JSON.stringify(sourceMap));
 	});
-	
+
 	// Default tasks.
 	grunt.registerTask('dev', ['jshint','complexity']);
 	grunt.registerTask('build', ['concat','uglify','fix-source-map']);
