@@ -26,3 +26,7 @@ body {
   margin-top: 30px;
   width: 20%;
 }
+
+span {
+  display: none;
+}
