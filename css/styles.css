@@ -1,15 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
 ul li{
   list-style: none;
 }
 
 .gallery{
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
-.gallery li{
-  float:left;
-  width: 20%;
-  margin: 2%;
+.gallery li {
+    float: left;
+    width: 41%;
+    margin-left: 2%;
 }
 
 img {
@@ -29,4 +33,13 @@ body {
 
 span {
   display: none;
+}
+
+@media (min-width: 768px){
+  .gallery li{
+    float:left;
+    width: 20%;
+    margin: 2%;
+  }
+
 }
