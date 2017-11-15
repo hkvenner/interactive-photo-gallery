@@ -12,64 +12,64 @@
     <input type="text" id="search-box" name="q" placeholder="Search" data-list=".list">
     <div class="gallery">
       <ul class="list">
-        <li><span>I love hay bales. Took this snap
+        <li id="image1"><span>I love hay bales. Took this snap
          on a drive through the countryside past some straw fields.</span><a href="photos/01.jpg"
           data-lightbox="gallery" data-title="I love hay bales. Took this snap
            on a drive through the countryside past some straw fields."
            >
            <img src="photos/thumbnails/01.jpg" alt="Hay Bales"></a>
           </li>
-        <li><span>The lake was so calm today. We had a
+        <li id="image2"><span>The lake was so calm today. We had a
          great view of the snow on the mountains from here.</span><a href="photos/02.jpg"
           data-lightbox="gallery" data-title="The lake was so calm today. We had a
            great view of the snow on the mountains from here." >
            <img src="photos/thumbnails/02.jpg" alt="Lake"></a></li>
-        <li><span>I hiked to
+        <li id="image3"><span>I hiked to
         the top of the mountain and got this picture of the canyon and trees below.</span><a href="photos/03.jpg"
           data-lightbox="gallery" data-title="I hiked to
           the top of the mountain and got this picture of the canyon and trees below.">
            <img src="photos/thumbnails/03.jpg" alt="Canyon"></a></li>
-        <li><span>It was amazing to see an iceberg up close,
+        <li id="image4"><span>It was amazing to see an iceberg up close,
         it was so cold but didn't snow today</span><a href="photos/04.jpg"
           data-lightbox="gallery" data-title="It was amazing to see an iceberg up close,
           it was so cold but didn't snow today">
            <img src="photos/thumbnails/04.jpg" alt="Canyon"></a></li>
-        <li><span>The red cliffs were beautiful.
+        <li id="image5"><span>The red cliffs were beautiful.
          It was really hot in the desert but we did a lot of walking through the canyons.</span><a href="photos/05.jpg"
           data-lightbox="gallery" data-title="The red cliffs were beautiful.
            It was really hot in the desert but we did a lot of walking through the canyons.">
            <img src="photos/thumbnails/05.jpg" alt="Desert"></a></li>
-        <li><span>Fall is coming, I love when the
+        <li id="image6"><span>Fall is coming, I love when the
         leaves on the trees start to change color.</span><a href="photos/06.jpg"
           data-lightbox="gallery" data-title="Fall is coming, I love when the
           leaves on the trees start to change color.">
            <img src="photos/thumbnails/06.jpg" alt="Desert"></a></li>
-        <li><span>I drove past this plantation
+        <li id="image7"><span>I drove past this plantation
           yesterday, everything is so green!</span><a href="photos/07.jpg"
           data-lightbox="gallery" data-title="I drove past this plantation
           yesterday, everything is so green!">
            <img src="photos/thumbnails/07.jpg" alt="Desert"></a></li>
-        <li><span>My summer vacation to the Oregon
+        <li id="image8"><span>My summer vacation to the Oregon
         Coast. I love the sandy dunes!</span><a href="photos/08.jpg"
           data-lightbox="gallery" data-title="My summer vacation to the Oregon
           Coast. I love the sandy dunes!"><img src="photos/thumbnails/08.jpg"
           alt="Dunes"></a></li>
-        <li><span>We enjoyed a quiet
+        <li id="image9"><span>We enjoyed a quiet
           stroll down this countryside lane.</span><a href="photos/09.jpg"
           data-lightbox="gallery" data-title="We enjoyed a quiet
            stroll down this countryside lane." ><img src="photos/thumbnails/09.jpg"
           alt="Countryside Lane"></a></li>
-        <li><span>Sunset at the coast!
+        <li id="image10"><span>Sunset at the coast!
         The sky turned a lovely shade of orange.</span><a href="photos/10.jpg"
           data-lightbox="gallery" data-title="Sunset at the coast!
           The sky turned a lovely shade of orange."><img src="photos/thumbnails/10.jpg"
           alt="Sunset"></a></li>
-        <li><span>I did a tour of a cave today
+        <li id="image11"><span>I did a tour of a cave today
         and the view of the landscape below was breathtaking.</span><a href="photos/11.jpg"
           data-lightbox="gallery" data-title="I did a tour of a cave today
           and the view of the landscape below was breathtaking"><img src="photos/thumbnails/11.jpg"
           alt="Cave"></a></li>
-        <li><span>I walked through this meadow of
+        <li id="image12"><span>I walked through this meadow of
          bluebells and got a good view of the snow on the mountain before the
           fog came in.</span><a title="hay" href="photos/12.jpg"
           data-lightbox="gallery" data-title="I walked through this meadow of
@@ -84,8 +84,9 @@
       lightbox.option({'wraparound': true, 'albumLabel':"Image %1 of %2"})
     </script>
     <script src="js/quicksearch/src/jquery.quicksearch.js"></script>
-    <script>
-    $('#search-box').quicksearch('li');
+    <script src="js/main.js">
+    /*$('#search-box').quicksearch('li'); */
+
     </script>
   </body>
 </html>
