@@ -212,7 +212,8 @@ body.lb-disable-scrolling {
   opacity: 1;
 }
 
-/*Added breakpoint for smaller screen sizes for lightbox overlay*/
+/*Added breakpoint for smaller screen sizes for lightbox overlay. Background more
+opaque for mobile users to increase readability*/
 @media (min-width: 768px) {
   .lightboxOverlay {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
