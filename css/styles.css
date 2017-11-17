@@ -35,6 +35,7 @@ span {
   display: none;
 }
 
+/*Added breakpoint for smaller screen sizes for lightbox overlay*/
 @media (min-width: 768px){
   .gallery li{
     float:left;

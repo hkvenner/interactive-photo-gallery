@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <input type="text" id="search-box" name="q" placeholder="Search" data-list=".list">
+    <input type="text" id="search-box" name="q" onkeyup="filter()" placeholder="Search" data-list=".list">
     <div class="gallery">
       <ul class="list">
         <li id="image1"><span>I love hay bales. Took this snap
@@ -83,10 +83,24 @@
     <script>
       lightbox.option({'wraparound': true, 'albumLabel':"Image %1 of %2"})
     </script>
-    <script src="js/quicksearch/src/jquery.quicksearch.js"></script>
-    <script src="js/main.js">
-    /*$('#search-box').quicksearch('li'); */
+    <script>
+    /*Javascript code that allows real-time filtering of images by captions*/
+    function filter(){
+      var input, filter, ul, li, a, i;
+      input = document.getElementById('search-box');
+      filter = input.value.toLowerCase();
+      ul = document.getElementsByClassName("list")[0];
+      li = ul.getElementsByTagName("li");
 
+      for (i=0; i < li.length; i++) {
+        span = li[i].getElementsByTagName("span")[0];
+        if (span.innerHTML.toLowerCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+   }
     </script>
   </body>
 </html>

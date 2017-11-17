@@ -14,8 +14,8 @@ body.lb-disable-scrolling {
   left: 0;
   z-index: 9999;
   background-color: black;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 1.0;
   display: none;
 }
 
@@ -210,4 +210,12 @@ body.lb-disable-scrolling {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+
+/*Added breakpoint for smaller screen sizes for lightbox overlay*/
+@media (min-width: 768px) {
+  .lightboxOverlay {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    opacity: 0.8;
+  }
 }
